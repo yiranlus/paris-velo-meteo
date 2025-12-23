@@ -139,7 +139,8 @@ for i, compteur in df_bikes.iterrows():
 
 map_data = st_folium(m, width=700, height=300)
 if map_data:
-    st.session_state["zoom"] = map_data.get("zoom", ZOOM_START)
+    if "zoom" in st.session_state:
+        st.session_state["zoom"] = map_data["zoom"]
     if "center" in map_data:
         st.session_state["center"] = (
             map_data["center"]["lat"],
